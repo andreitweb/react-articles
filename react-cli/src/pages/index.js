@@ -1,20 +1,20 @@
-import { Articles } from './Articles';
-import { Chats } from './Chats';
+import { ArticlesPage } from './ArticlesPage';
+import { ChatsPage } from './ChatsPage';
 
-export { Articles, Chats };
+export { ArticlesPage, ChatsPage };
 export const pageList = [
   {
     path: '/',
     exact: true,
     name: 'Articles',
     iconName: 'allInbox',
-    component: Articles,
+    component: ArticlesPage,
   },
   {
     path: '/chats',
     exact: false,
     name: 'Chats',
     iconName: 'chat',
-    component: Chats,
+    component: ChatsPage,
   },
 ];

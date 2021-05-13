@@ -1,5 +1,5 @@
 import React from 'react';
 
-export const Chats = () => (
+export const ChatsPage = () => (
   <div>Chats</div>
 );
