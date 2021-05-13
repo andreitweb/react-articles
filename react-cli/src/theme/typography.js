@@ -7,4 +7,8 @@ export const typography = {
     fontSize: 36,
     fontWeight: 500,
   },
+  h3: {
+    fontSize: 30,
+    fontWeight: 500,
+  },
 };

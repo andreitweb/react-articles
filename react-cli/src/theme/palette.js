@@ -5,7 +5,7 @@ export const palette = {
     main: blue.A700,
   },
   secondary: {
-    main: grey['800']
+    main: grey['800'],
   },
   background: {
     default: '#fff',
