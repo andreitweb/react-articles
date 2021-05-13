@@ -9,6 +9,7 @@ export const pageList = [
     name: 'Articles',
     iconName: 'allInbox',
     component: ArticlesPage,
+    layout: 'base',
   },
   {
     path: '/chats',
@@ -16,5 +17,6 @@ export const pageList = [
     name: 'Chats',
     iconName: 'chat',
     component: ChatsPage,
+    layout: 'base',
   },
 ];
