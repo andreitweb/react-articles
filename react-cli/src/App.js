@@ -5,7 +5,7 @@ import { Menu, ChevronLeft, ChevronRight } from '@material-ui/icons';
 import clsx from 'clsx';
 
 import { pageList } from './pages';
-import { Sidebar } from './components';
+import { Sidebar, Logo } from './components';
 
 const drawerWidth = 240;
 const useStyles = makeStyles((theme) => ({
@@ -93,7 +93,7 @@ function App() {
             >
               <Menu />
             </IconButton>
-            ТУТ ЛОГО
+            <Logo />
           </Toolbar>
         </AppBar>
         <Drawer
