@@ -1,11 +1,14 @@
 import axios from 'axios';
 import { merge, get } from 'lodash';
 
+import { emitGlobalEvent } from '../helpers';
+
 axios.interceptors.response.use(
   response => {
     return response;
   },
   error => {
+    emitGlobalEvent('Alert.error', {error: error.message});
     return error;
   },
 );
@@ -20,26 +23,18 @@ class Api {
   /** Request to API
    *
    * @param {string} url - piece of url
-   * @param {object} options - request data
+   * @param {object} options - request options
+   * @param {object} data - request data
    * @returns {Promise<any>}
    */
-  async request(url = '', options = {}){
-    const defaultOptions = {};
-    return await axios(this.apiUrl + url, merge(defaultOptions, options))
-      .then(response => get(response, ['data'], null))
-      .catch((e) => this.errorLogger(e.message));
-  }
-  
-  /** Dispatch event with error
-   *
-   * @param {string} error - error message
-   */
-  errorLogger(error){
-    document.dispatchEvent(
-      new CustomEvent('alert.error', {
-        detail: { error },
-      }),
-    );
+  async request(url = '', options = {}, data){
+    const defaultOptions = {...options};
+    return await axios({
+      url: this.apiUrl + url,
+      ...defaultOptions,
+      data,
+    })
+      .then(response => get(response, ['data'], null));
   }
 }
 
