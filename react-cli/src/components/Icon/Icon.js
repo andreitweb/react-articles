@@ -1,14 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { AllInbox, Chat } from '@material-ui/icons';
+import { AllInbox, Forum, PostAdd } from '@material-ui/icons';
 
 export const Icon = ({ name }) => {
   switch (name) {
     case 'allInbox':
       return <AllInbox />;
     case 'chat':
-      return <Chat />;
+      return <Forum />;
+    case 'postAdd':
+      return <PostAdd />;
     default:
       return;
   }

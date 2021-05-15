@@ -1,8 +1,8 @@
-import { blue, grey } from '@material-ui/core/colors';
+import { indigo, grey } from '@material-ui/core/colors';
 
 export const palette = {
   primary: {
-    main: blue.A700,
+    main: indigo['400'],
   },
   secondary: {
     main: grey['800'],
