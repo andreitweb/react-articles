@@ -15,7 +15,7 @@ export const pageList = [
   {
     path: '/new-article',
     exact: false,
-    name: 'NewArticle',
+    name: 'Write an article',
     iconName: 'postAdd',
     component: NewArticlePage,
     layout: 'base',
