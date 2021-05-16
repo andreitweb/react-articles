@@ -1,7 +1,14 @@
 import { connect } from 'react-redux';
 import { addArticle } from '../../store/articles/actions';
 
+import { getLoading } from './selectors';
 import { NewArticle } from './NewArticle';
+
+const mapStateToProps = (state) => {
+  return {
+    loading: getLoading(state),
+  };
+};
 
 const mapDispatchToProps = (dispatch) => {
   return {
@@ -9,4 +16,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(null, mapDispatchToProps)(NewArticle);
+export default connect(mapStateToProps, mapDispatchToProps)(NewArticle);

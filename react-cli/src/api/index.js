@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { merge, get } from 'lodash';
+import { get } from 'lodash';
 
 import { emitGlobalEvent } from '../helpers';
 
@@ -13,7 +13,7 @@ axios.interceptors.response.use(
   },
 );
 
-const root = process.env.FIREBASE_URL;
+const root = 'https://react-articles-92f72-default-rtdb.europe-west1.firebasedatabase.app';
 
 class Api {
   constructor(apiUrl = root) {

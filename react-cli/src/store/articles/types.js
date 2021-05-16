@@ -1,2 +1,3 @@
-export const FETCH_ARTICLES = 'articles/FETCH_ARTICLES';
-export const ADD_ARTICLE = 'articles/ADD_ARTICLE';
+export const FETCH_ARTICLES = 'ARTICLES/FETCH_ARTICLES';
+export const ADD_ARTICLE = 'ARTICLES/ADD_ARTICLE';
+export const TOGGLE_LOADING = 'ARTICLES/TOGGLE_LOADING';

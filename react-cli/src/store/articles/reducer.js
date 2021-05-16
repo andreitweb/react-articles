@@ -1,8 +1,8 @@
 import { Map } from 'immutable';
-import { FETCH_ARTICLES, ADD_ARTICLE } from './types';
+import { FETCH_ARTICLES, TOGGLE_LOADING } from './types';
 
 const initialState = Map({
-  loading: true,
+  loading: false,
   list: [],
 });
 
@@ -12,10 +12,8 @@ const actionHandlers = {
     console.log('Load Articles');
     return state;
   },
-  [ADD_ARTICLE]: (state, payload) => {
-    // eslint-disable-next-line no-console
-    console.log('Add Article', payload);
-    return state;
+  [TOGGLE_LOADING]: (state, payload) => {
+    return state.set('loading', payload);
   },
   DEFAULT: state => state,
 };
