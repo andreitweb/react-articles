@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { addArticle } from '../../store/articles/actions';
+import { startCreateArticle } from '../../store/articles/actions';
 
 import { getLoading } from './selectors';
 import { NewArticle } from './NewArticle';
@@ -10,10 +10,8 @@ const mapStateToProps = (state) => {
   };
 };
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    onSubmit: (formData) => dispatch(addArticle(formData)),
-  };
-};
+const mapDispatchToProps = (dispatch) => ({
+  onSubmit: (formData) => dispatch(startCreateArticle(formData)),
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(NewArticle);

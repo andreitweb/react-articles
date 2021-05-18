@@ -1,28 +1,51 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
-import { api } from '../../api';
+import { articlesApi } from '../../api/Articles';
 import { emitGlobalEvent } from '../../helpers';
-import { toggleLoading } from './actions';
-import { ADD_ARTICLE } from './types';
+import {
+  endFetchArticles,
+  endCreateArticle,
+} from './actions';
+import { START_FETCH_ARTICLES, START_CREATE_ARTICLE } from './types';
 
-const addArticle = (payload) => api.request('/articles.json', { method: 'post' }, {
-  date: new Date().toLocaleString(),
-  ...payload,
-});
-
-function* addArticleWorker({ payload }) {
+const createArticleWorker = function* ({ payload }) {
   try {
-    yield put(toggleLoading(true));
-    const result = yield call(addArticle, payload);
-    yield put(toggleLoading(false));
-    // eslint-disable-next-line no-console
-    console.log(result);
-    emitGlobalEvent('Alert.success', {message: 'Article was added!'});
+    const result = yield call(() => articlesApi.createArticle({
+      date: new Date().toLocaleString(),
+      id: +new Date(),
+      ...payload,
+    }));
+    
+    emitGlobalEvent(
+      result ? 'Alert.success' : 'Alert.error',
+      { message: result ? 'Article added!' : 'Something went wrong!' },
+    );
+    
+    yield put(endCreateArticle());
   } catch (error) {
-    yield put(toggleLoading(false));
-    emitGlobalEvent('Alert.error', {message: error.message});
+    yield put(endCreateArticle());
   }
-}
-
-export const sagaAddArticle = function* () {
-  yield takeLatest(ADD_ARTICLE, addArticleWorker);
 };
+
+const fetchArticlesWorker = function* () {
+  try {
+    const result = yield call(() => articlesApi.fetchArticles());
+    
+    yield put(endFetchArticles(result || {}));
+    
+  } catch (error) {
+    yield put(endFetchArticles());
+  }
+};
+
+const createArticleWatcher = function* () {
+  yield takeLatest(START_CREATE_ARTICLE, createArticleWorker);
+};
+
+const fetchArticlesWatcher = function* () {
+  yield takeLatest(START_FETCH_ARTICLES, fetchArticlesWorker);
+};
+
+export const sagaArrayArticle = [
+  createArticleWatcher,
+  fetchArticlesWatcher,
+];

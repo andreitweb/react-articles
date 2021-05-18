@@ -3,15 +3,15 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { CircularProgress } from '@material-ui/core';
 
-import { fetchArticles } from '../../store/articles/actions';
+import { startFetchArticles } from '../../store/articles/actions';
 
 import { getList, getLoading } from './selectors';
 import { Articles } from './Articles';
 
-const ArticlesContainer = ({ loading, list, fetchArticles}) => {
+const ArticlesContainer = ({ loading, list, startFetchArticles}) => {
   
   useEffect(() => {
-    fetchArticles();
+    startFetchArticles();
   }, []);
   
   return loading ? <CircularProgress /> : <Articles list={list} />;
@@ -19,8 +19,8 @@ const ArticlesContainer = ({ loading, list, fetchArticles}) => {
 
 ArticlesContainer.propTypes = {
   loading: PropTypes.bool.isRequired,
-  list: PropTypes.array.isRequired,
-  fetchArticles: PropTypes.func.isRequired,
+  list: PropTypes.object.isRequired,
+  startFetchArticles: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => {
@@ -30,10 +30,6 @@ const mapStateToProps = (state) => {
   };
 };
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    fetchArticles: () => dispatch(fetchArticles()),
-  };
-};
+const mapDispatchToProps = {startFetchArticles};
 
 export default connect(mapStateToProps, mapDispatchToProps)(ArticlesContainer);

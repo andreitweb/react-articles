@@ -36,7 +36,7 @@ export const NewArticle = ({ loading, onSubmit }) => {
         label: 'Text',
         required: true,
         multiline: true,
-        rows: 5,
+        rowsMax: 10,
       },
     }
   );

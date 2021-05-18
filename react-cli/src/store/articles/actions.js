@@ -1,5 +1,11 @@
-import { FETCH_ARTICLES, ADD_ARTICLE, TOGGLE_LOADING } from './types';
+import {
+  START_FETCH_ARTICLES,
+  END_FETCH_ARTICLES,
+  START_CREATE_ARTICLE,
+  END_CREATE_ARTICLE,
+} from './types';
 
-export const fetchArticles = () => ({type: FETCH_ARTICLES});
-export const addArticle = (payload) => ({type: ADD_ARTICLE, payload});
-export const toggleLoading = (payload) => ({type: TOGGLE_LOADING, payload});
+export const startFetchArticles = () => ({type: START_FETCH_ARTICLES});
+export const endFetchArticles = (payload) => ({type: END_FETCH_ARTICLES, payload});
+export const startCreateArticle = (payload) => ({type: START_CREATE_ARTICLE, payload});
+export const endCreateArticle = () => ({type: END_CREATE_ARTICLE});

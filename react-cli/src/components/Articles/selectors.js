@@ -9,5 +9,5 @@ export const getLoading = createSelector(
 );
 export const getList = createSelector(
   list,
-  list => list,
+  list => list.toJS(),
 );

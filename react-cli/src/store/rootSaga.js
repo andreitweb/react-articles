@@ -1,9 +1,9 @@
 import { all, call } from 'redux-saga/effects';
 import { map } from 'lodash';
-import { sagaAddArticle } from './articles/saga';
+import { sagaArrayArticle } from './articles/saga';
 
 const sagaArray = [
-  sagaAddArticle,
+    ...sagaArrayArticle,
 ];
 
 export const rootSaga = function* () {

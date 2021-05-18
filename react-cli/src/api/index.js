@@ -27,7 +27,7 @@ class Api {
    * @param {object} data - request data
    * @returns {Promise<any>}
    */
-  async request(url = '', options = {}, data){
+  async request(url = '', options = {}, data = {}){
     const defaultOptions = {...options};
     return await axios({
       url: this.apiUrl + url,

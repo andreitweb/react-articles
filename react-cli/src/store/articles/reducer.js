@@ -1,20 +1,21 @@
 import { Map } from 'immutable';
-import { FETCH_ARTICLES, TOGGLE_LOADING } from './types';
+import {
+  START_FETCH_ARTICLES,
+  END_FETCH_ARTICLES,
+  START_CREATE_ARTICLE,
+  END_CREATE_ARTICLE,
+} from './types';
 
 const initialState = Map({
   loading: false,
-  list: [],
+  list: Map({}),
 });
 
 const actionHandlers = {
-  [FETCH_ARTICLES]: (state) => {
-    // eslint-disable-next-line no-console
-    console.log('Load Articles');
-    return state;
-  },
-  [TOGGLE_LOADING]: (state, payload) => {
-    return state.set('loading', payload);
-  },
+  [START_FETCH_ARTICLES]: (state) => state.set('loading', true),
+  [END_FETCH_ARTICLES]: (state, payload = {}) => state.mergeDeep({loading: false, list: Map(payload)}),
+  [START_CREATE_ARTICLE]: (state) => state.set('loading', true),
+  [END_CREATE_ARTICLE]: (state) => state.set('loading', false),
   DEFAULT: state => state,
 };
 
