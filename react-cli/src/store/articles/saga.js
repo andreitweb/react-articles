@@ -11,7 +11,6 @@ const createArticleWorker = function* ({ payload }) {
   try {
     const result = yield call(() => articlesApi.createArticle({
       date: new Date().toLocaleString(),
-      id: +new Date(),
       ...payload,
     }));
     
