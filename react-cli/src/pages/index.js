@@ -1,6 +1,7 @@
 import { ArticlesPage } from './ArticlesPage';
 import { NewArticlePage } from './NewArticlePage';
 import { ChatsPage } from './ChatsPage';
+import { ArticleDetailPage } from './ArticleDetailPage';
 
 export { ArticlesPage, ChatsPage };
 export const pageList = [
@@ -11,6 +12,7 @@ export const pageList = [
     iconName: 'allInbox',
     component: ArticlesPage,
     layout: 'base',
+    showInSidebar: true,
   },
   {
     path: '/new-article',
@@ -19,6 +21,14 @@ export const pageList = [
     iconName: 'postAdd',
     component: NewArticlePage,
     layout: 'base',
+    showInSidebar: true,
+  },
+  {
+    path: '/article/:id',
+    exact: false,
+    component: ArticleDetailPage,
+    layout: 'base',
+    showInSidebar: false,
   },
   {
     path: '/chats',
@@ -27,5 +37,6 @@ export const pageList = [
     iconName: 'chat',
     component: ChatsPage,
     layout: 'base',
+    showInSidebar: true,
   },
 ];
