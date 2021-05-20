@@ -20,9 +20,9 @@ const createArticleWorker = function* ({ payload }) {
       { message: result ? 'Article added!' : 'Something went wrong!' },
     );
     
-    yield put(endCreateArticle());
+    yield put(endCreateArticle(result ? {title: '', text: ''} : payload));
   } catch (error) {
-    yield put(endCreateArticle());
+    yield put(endCreateArticle(payload));
   }
 };
 

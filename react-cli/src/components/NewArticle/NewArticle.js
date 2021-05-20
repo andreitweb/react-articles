@@ -1,6 +1,6 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import PropTypes from 'prop-types';
-import { trim, get, reduce, every, mapValues } from 'lodash';
+import { trim, get, reduce, every } from 'lodash';
 import { Grid, Box, makeStyles, TextField, Button, CircularProgress } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
@@ -20,9 +20,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export const NewArticle = ({ loading, onSubmit }) => {
+export const NewArticle = ({ loading, title, text, onSubmit }) => {
   const classes = useStyles();
-  const [fields, setState] = useState(
+  const [fields, setFields] = useState(
     {
       title: {
         value: '',
@@ -41,6 +41,10 @@ export const NewArticle = ({ loading, onSubmit }) => {
     }
   );
   
+  useEffect(() => {
+    setFields({title: {...fields.title, value: title}, text: {...fields.text, value: text}});
+  }, [title, text]);
+  
   // Every fields must be not empty
   const isValid = every(fields, ({ value }) => !!trim(value));
   
@@ -50,7 +54,7 @@ export const NewArticle = ({ loading, onSubmit }) => {
    */
   const handleInputChange = ({ target }) => {
     const { name, value } = target;
-    setState({...fields, [name]: {...fields[name], value}});
+    setFields({...fields, [name]: {...fields[name], value}});
   };
   
   /** Get form data and submit form
@@ -63,14 +67,8 @@ export const NewArticle = ({ loading, onSubmit }) => {
     if (isValid) {
       const formDate = reduce(fields, (acc, value, key) => ({...acc, [key]: trim(get(value, ['value']))}), {});
       onSubmit(formDate);
-      clearForm();
     }
   };
-  
-  /** Clear all fields
-   *
-   */
-  const clearForm = () => setState(mapValues(fields, field => ({...field, value: ''})));
   
   return (
     <form className={classes.root} noValidate autoComplete="off" onSubmit={handleSubmit}>
@@ -103,5 +101,7 @@ export const NewArticle = ({ loading, onSubmit }) => {
 
 NewArticle.propTypes = {
   loading: PropTypes.bool.isRequired,
+  title: PropTypes.string.isRequired,
+  text: PropTypes.string.isRequired,
   onSubmit: PropTypes.func.isRequired,
 };

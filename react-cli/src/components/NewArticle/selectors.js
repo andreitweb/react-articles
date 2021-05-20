@@ -1,8 +1,19 @@
 import { createSelector } from 'reselect';
 
-const loading = state => state.articles.get('loading');
+const articles = state => state.articles;
+const newArticle = state => state.articles.get('newArticle');
 
 export const getLoading = createSelector(
-  loading,
-  loading => loading,
+  articles,
+  articles => articles.get('loading'),
+);
+
+export const getTitle = createSelector(
+  newArticle,
+  newArticle => newArticle.get('title'),
+);
+
+export const getText = createSelector(
+  newArticle,
+  newArticle => newArticle.get('text'),
 );

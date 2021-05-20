@@ -8,4 +8,4 @@ import {
 export const startFetchArticles = () => ({type: START_FETCH_ARTICLES});
 export const endFetchArticles = (payload) => ({type: END_FETCH_ARTICLES, payload});
 export const startCreateArticle = (payload) => ({type: START_CREATE_ARTICLE, payload});
-export const endCreateArticle = () => ({type: END_CREATE_ARTICLE});
+export const endCreateArticle = (payload) => ({type: END_CREATE_ARTICLE, payload});
