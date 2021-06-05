@@ -20,7 +20,7 @@ class ArticlesApi extends Api{
    */
   async fetchDetail(articleKey = '') {
     const requestUrl = filterUrl + `"${articleKey}"`;
-    return await this.request(requestUrl, { method: 'get' });
+    return await this.request(requestUrl, { method: 'get' }).then((result) => result[articleKey] || null);
   }
   
   /** Fetch to create new article

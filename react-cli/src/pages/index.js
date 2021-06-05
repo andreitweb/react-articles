@@ -25,6 +25,7 @@ export const pageList = [
   },
   {
     path: '/article/:id',
+    name: 'Detail Article Page',
     exact: false,
     component: ArticleDetailPage,
     layout: 'base',
